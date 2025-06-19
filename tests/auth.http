@@ -1,0 +1,43 @@
+@hostAddress = http://localhost:5000
+
+### Register Admin
+
+POST {{hostAddress}}/auth/register
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "12341234",
+    "roleId": 1
+}
+
+### Register Student
+
+POST {{hostAddress}}/auth/register
+Content-Type: application/json
+
+{
+    "username": "student",
+    "password": "12341234",
+    "roleId": 2
+}
+
+### Login as Admin
+
+POST {{hostAddress}}/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "12341234"
+}
+
+### Login as Student
+
+POST {{hostAddress}}/auth/login
+Content-Type: application/json
+
+{
+    "username": "student",
+    "password": "12341234"
+}

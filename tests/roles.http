@@ -1,0 +1,20 @@
+@hostAddress = http://localhost:5000
+
+### Create Admin Role
+POST {{hostAddress}}/roles
+Content-Type: application/json
+
+{
+  "name": "Admin"
+}
+
+### Create Student Role
+POST {{hostAddress}}/roles
+Content-Type: application/json
+
+{
+  "name": "Student"
+}
+
+### Get All Roles
+GET {{hostAddress}}/roles 
