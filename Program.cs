@@ -50,6 +50,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     };
   });
 
+builder.Services.AddAuthorizationBuilder()
+  .AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"))
+  .AddPolicy("StudentOnly", policy => policy.RequireRole("Student"))
+  .AddPolicy("AdminOrStudent", policy => policy.RequireRole("Admin", "Student"));
+
 // esto es para que se pueda usar el endpoint
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>

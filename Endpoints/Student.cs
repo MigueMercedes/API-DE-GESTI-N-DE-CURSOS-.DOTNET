@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using study.db;
+using study.models;
 
 static class StudentEndpoints
 {
   public static void Map(WebApplication app)
   {
-    app.MapGet("/student/me", async (HttpContext http, AppDbContext db) =>
+    app.MapGet("/students/me", async (HttpContext http, AppDbContext db) =>
     {
       var username = http.User.Identity?.Name;
 
@@ -24,6 +25,15 @@ static class StudentEndpoints
       return user is null
       ? Results.NotFound()
       : Results.Ok(user);
-    }).RequireAuthorization();
+    }).RequireAuthorization("AdminOnly");
+
+    // Get all students
+    app.MapGet("/students", async (HttpContext http, AppDbContext db) =>
+    {
+      var studentRole = new Role("Student");
+      var students = await db.Users.Where(u => u.Role.Id == studentRole.Id).ToListAsync();
+
+      return Results.Ok(students);
+    }).RequireAuthorization("AdminOnly");
   }
 }

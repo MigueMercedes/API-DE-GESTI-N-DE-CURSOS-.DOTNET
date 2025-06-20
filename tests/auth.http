@@ -17,7 +17,7 @@ POST {{hostAddress}}/auth/register
 Content-Type: application/json
 
 {
-    "username": "student",
+    "username": "student3",
     "password": "12341234",
     "roleId": 2
 }
@@ -38,6 +38,6 @@ POST {{hostAddress}}/auth/login
 Content-Type: application/json
 
 {
-    "username": "student",
+    "username": "student2",
     "password": "12341234"
 }
